@@ -116,7 +116,7 @@ class DepartmentServiceImplTest {
 
         DepartmentUpdateDto dto = new DepartmentUpdateDto(expectedId, "department update #1");
 
-        Mockito.doReturn(true).when(mockDepartmentRepository).exitsById(Mockito.any());
+        Mockito.doReturn(true).when(mockDepartmentRepository).existById(Mockito.any());
 
         departmentService.update(dto);
 
@@ -131,7 +131,7 @@ class DepartmentServiceImplTest {
     void updateNotFound() {
         DepartmentUpdateDto dto = new DepartmentUpdateDto(1L, "department update #1");
 
-        Mockito.doReturn(false).when(mockDepartmentRepository).exitsById(Mockito.any());
+        Mockito.doReturn(false).when(mockDepartmentRepository).existById(Mockito.any());
 
         NotFoundException exception = Assertions.assertThrows(
                 NotFoundException.class,
@@ -148,7 +148,7 @@ class DepartmentServiceImplTest {
 
         Optional<Department> department = Optional.of(new Department(expectedId, "department found #1", List.of()));
 
-        Mockito.doReturn(true).when(mockDepartmentRepository).exitsById(Mockito.any());
+        Mockito.doReturn(true).when(mockDepartmentRepository).existById(Mockito.any());
         Mockito.doReturn(department).when(mockDepartmentRepository).findById(Mockito.anyLong());
 
         DepartmentOutGoingDto dto = departmentService.findById(expectedId);
@@ -160,7 +160,7 @@ class DepartmentServiceImplTest {
     void findByIdNotFound() {
         Optional<Department> department = Optional.empty();
 
-        Mockito.doReturn(false).when(mockDepartmentRepository).exitsById(Mockito.any());
+        Mockito.doReturn(false).when(mockDepartmentRepository).existById(Mockito.any());
 
         NotFoundException exception = Assertions.assertThrows(
                 NotFoundException.class,
@@ -181,7 +181,7 @@ class DepartmentServiceImplTest {
     void delete() throws NotFoundException {
         Long expectedId = 100L;
 
-        Mockito.doReturn(true).when(mockDepartmentRepository).exitsById(Mockito.any());
+        Mockito.doReturn(true).when(mockDepartmentRepository).existById(Mockito.any());
         departmentService.delete(expectedId);
 
         ArgumentCaptor<Long> argumentCaptor = ArgumentCaptor.forClass(Long.class);
@@ -196,8 +196,8 @@ class DepartmentServiceImplTest {
         Long expectedId = 100L;
         Optional<UserToDepartment> link = Optional.of(new UserToDepartment(expectedId, 1L, 2L));
 
-        Mockito.doReturn(true).when(mockUserRepository).exitsById(Mockito.any());
-        Mockito.doReturn(true).when(mockDepartmentRepository).exitsById(Mockito.any());
+        Mockito.doReturn(true).when(mockUserRepository).existById(Mockito.any());
+        Mockito.doReturn(true).when(mockDepartmentRepository).existById(Mockito.any());
         Mockito.doReturn(link).when(mockUserToDepartmentRepository).findByUserIdAndDepartmentId(Mockito.anyLong(), Mockito.anyLong());
 
         departmentService.deleteUserFromDepartment(1L, 1l);
@@ -213,8 +213,8 @@ class DepartmentServiceImplTest {
         Long expectedUserId = 100L;
         Long expectedDepartmentId = 500L;
 
-        Mockito.doReturn(true).when(mockUserRepository).exitsById(Mockito.any());
-        Mockito.doReturn(true).when(mockDepartmentRepository).exitsById(Mockito.any());
+        Mockito.doReturn(true).when(mockUserRepository).existById(Mockito.any());
+        Mockito.doReturn(true).when(mockDepartmentRepository).existById(Mockito.any());
 
         departmentService.addUserToDepartment(expectedDepartmentId, expectedUserId);
 

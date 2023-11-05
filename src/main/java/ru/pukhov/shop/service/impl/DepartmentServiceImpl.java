@@ -38,7 +38,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     private void checkExistDepartment(Long departmentId) throws NotFoundException {
-        if (!departmentRepository.exitsById(departmentId)) {
+        if (!departmentRepository.existById(departmentId)) {
             throw new NotFoundException("Department not found.");
         }
     }
@@ -79,7 +79,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public void deleteUserFromDepartment(Long departmentId, Long userId) throws NotFoundException {
         checkExistDepartment(departmentId);
-        if (userRepository.exitsById(userId)) {
+        if (userRepository.existById(userId)) {
             UserToDepartment linkUserDepartment = userToDepartmentRepository.findByUserIdAndDepartmentId(userId, departmentId)
                     .orElseThrow(() -> new NotFoundException("Link many to many Not found."));
 
@@ -93,7 +93,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public void addUserToDepartment(Long departmentId, Long userId) throws NotFoundException {
         checkExistDepartment(departmentId);
-        if (userRepository.exitsById(userId)) {
+        if (userRepository.existById(userId)) {
             UserToDepartment linkUserDepartment = new UserToDepartment(
                     null,
                     userId,

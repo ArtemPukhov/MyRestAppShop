@@ -114,7 +114,7 @@ public class UserRepositoryImpl implements UserRepository {
                 departmentIdList.remove(userToDepartment.getDepartmentId());
             }
             for (Long departmentId : departmentIdList) {
-                if (departmentRepository.exitsById(departmentId)) {
+                if (departmentRepository.existById(departmentId)) {
                     UserToDepartment userToDepartment = new UserToDepartment(
                             null,
                             user.getId(),
@@ -145,7 +145,7 @@ public class UserRepositoryImpl implements UserRepository {
                 if (existsPhoneNumberIdList.contains(phoneNumber.getId())) {
                     phoneNumberRepository.update(phoneNumber);
                 } else {
-                    saveOrUpdateExitsNumber(phoneNumber);
+                    saveOrUpdateExistsNumber(phoneNumber);
                 }
                 phoneNumberList.set(i, null);
                 existsPhoneNumberIdList.remove(phoneNumber.getId());
@@ -166,7 +166,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     }
 
-    private void saveOrUpdateExitsNumber(PhoneNumber phoneNumber) {
+    private void saveOrUpdateExistsNumber(PhoneNumber phoneNumber) {
         if (phoneNumberRepository.existsByNumber(phoneNumber.getNumber())) {
             Optional<PhoneNumber> exitNumber = phoneNumberRepository.findByNumber(phoneNumber.getNumber());
             if (exitNumber.isPresent()
@@ -259,7 +259,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public boolean exitsById(Long id) {
+    public boolean existById(Long id) {
         boolean isExists = false;
         try (Connection connection = connectionManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(EXIST_BY_ID_SQL)) {

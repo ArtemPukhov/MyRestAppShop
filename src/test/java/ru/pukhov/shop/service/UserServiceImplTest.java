@@ -77,7 +77,7 @@ class UserServiceImplTest {
         UserUpdateDto dto = new UserUpdateDto(expectedId, "f1 name", "l1 name",
                 new RoleUpdateDto(1L, "role#1"), List.of(), List.of());
 
-        Mockito.doReturn(true).when(mockUserRepository).exitsById(Mockito.any());
+        Mockito.doReturn(true).when(mockUserRepository).existById(Mockito.any());
 
         userService.update(dto);
 
@@ -92,7 +92,7 @@ class UserServiceImplTest {
     void updateNotFound() {
         UserUpdateDto dto = new UserUpdateDto(1L, "f1 name", "l1 name", null, null, null);
 
-        Mockito.doReturn(false).when(mockUserRepository).exitsById(Mockito.any());
+        Mockito.doReturn(false).when(mockUserRepository).existById(Mockito.any());
 
         NotFoundException exception = Assertions.assertThrows(
                 NotFoundException.class,
@@ -109,7 +109,7 @@ class UserServiceImplTest {
 
         Optional<User> user = Optional.of(new User(expectedId, "f1 name", "l1 name", role, List.of(), List.of()));
 
-        Mockito.doReturn(true).when(mockUserRepository).exitsById(Mockito.any());
+        Mockito.doReturn(true).when(mockUserRepository).existById(Mockito.any());
         Mockito.doReturn(user).when(mockUserRepository).findById(Mockito.anyLong());
 
         UserOutGoingDto dto = userService.findById(expectedId);
@@ -121,7 +121,7 @@ class UserServiceImplTest {
     void findByIdNotFound() {
         Optional<User> user = Optional.empty();
 
-        Mockito.doReturn(false).when(mockUserRepository).exitsById(Mockito.any());
+        Mockito.doReturn(false).when(mockUserRepository).existById(Mockito.any());
 
         NotFoundException exception = Assertions.assertThrows(
                 NotFoundException.class,
@@ -142,7 +142,7 @@ class UserServiceImplTest {
     void delete() throws NotFoundException {
         Long expectedId = 100L;
 
-        Mockito.doReturn(true).when(mockUserRepository).exitsById(Mockito.any());
+        Mockito.doReturn(true).when(mockUserRepository).existById(Mockito.any());
         userService.delete(expectedId);
 
         ArgumentCaptor<Long> argumentCaptor = ArgumentCaptor.forClass(Long.class);

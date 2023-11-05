@@ -39,7 +39,7 @@ public class PhoneNumberServiceImpl implements PhoneNumberService {
 
     @Override
     public void update(PhoneNumberUpdateDto phoneNumberUpdateDto) throws NotFoundException {
-        if (phoneNumberRepository.exitsById(phoneNumberUpdateDto.getId())) {
+        if (phoneNumberRepository.existById(phoneNumberUpdateDto.getId())) {
             PhoneNumber phoneNumber = phoneNumberDtoMapper.map(phoneNumberUpdateDto);
             phoneNumberRepository.update(phoneNumber);
         } else {

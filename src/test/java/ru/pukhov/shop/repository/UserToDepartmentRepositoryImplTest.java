@@ -176,7 +176,7 @@ class UserToDepartmentRepositoryImplTest {
             "1000, false"
     })
     void exitsById(Long expectedId, Boolean expectedValue) {
-        Boolean resultValue = userToDepartmentRepository.exitsById(expectedId);
+        Boolean resultValue = userToDepartmentRepository.existById(expectedId);
 
         Assertions.assertEquals(expectedValue, resultValue);
     }

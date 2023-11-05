@@ -71,7 +71,7 @@ class RoleServiceImplTest {
 
         RoleUpdateDto dto = new RoleUpdateDto(expectedId, "role update #1");
 
-        Mockito.doReturn(true).when(mockRoleRepository).exitsById(Mockito.any());
+        Mockito.doReturn(true).when(mockRoleRepository).existById(Mockito.any());
 
         roleService.update(dto);
 
@@ -86,7 +86,7 @@ class RoleServiceImplTest {
     void updateNotFound() {
         RoleUpdateDto dto = new RoleUpdateDto(1L, "role update #1");
 
-        Mockito.doReturn(false).when(mockRoleRepository).exitsById(Mockito.any());
+        Mockito.doReturn(false).when(mockRoleRepository).existById(Mockito.any());
 
         NotFoundException exception = Assertions.assertThrows(
                 NotFoundException.class,
@@ -103,7 +103,7 @@ class RoleServiceImplTest {
 
         Optional<Role> role = Optional.of(new Role(expectedId, "role found #1"));
 
-        Mockito.doReturn(true).when(mockRoleRepository).exitsById(Mockito.any());
+        Mockito.doReturn(true).when(mockRoleRepository).existById(Mockito.any());
         Mockito.doReturn(role).when(mockRoleRepository).findById(Mockito.anyLong());
 
         RoleOutGoingDto dto = roleService.findById(expectedId);
@@ -115,7 +115,7 @@ class RoleServiceImplTest {
     void findByIdNotFound() {
         Optional<Role> role = Optional.empty();
 
-        Mockito.doReturn(false).when(mockRoleRepository).exitsById(Mockito.any());
+        Mockito.doReturn(false).when(mockRoleRepository).existById(Mockito.any());
 
         NotFoundException exception = Assertions.assertThrows(
                 NotFoundException.class,
@@ -136,7 +136,7 @@ class RoleServiceImplTest {
     void delete() throws NotFoundException {
         Long expectedId = 100L;
 
-        Mockito.doReturn(true).when(mockRoleRepository).exitsById(100L);
+        Mockito.doReturn(true).when(mockRoleRepository).existById(100L);
 
         roleService.delete(expectedId);
 

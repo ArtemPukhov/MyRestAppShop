@@ -244,7 +244,7 @@ public class PhoneNumberRepositoryImpl implements PhoneNumberRepository {
     }
 
     @Override
-    public boolean exitsById(Long id) {
+    public boolean existById(Long id) {
         boolean isExists = false;
         try (Connection connection = connectionManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(EXIST_BY_ID_SQL)) {

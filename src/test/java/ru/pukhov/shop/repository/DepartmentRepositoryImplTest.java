@@ -1,10 +1,6 @@
 package ru.pukhov.shop.repository;
 
 
-import com.github.dockerjava.api.model.ExposedPort;
-import com.github.dockerjava.api.model.HostConfig;
-import com.github.dockerjava.api.model.PortBinding;
-import com.github.dockerjava.api.model.Ports;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -15,7 +11,6 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import ru.pukhov.shop.model.Department;
 import ru.pukhov.shop.repository.impl.DepartmentRepositoryImpl;
-import ru.pukhov.shop.util.PropertiesUtil;
 
 import java.util.List;
 import java.util.Optional;
@@ -134,7 +129,7 @@ class DepartmentRepositoryImplTest {
             "100; false"
     }, delimiter = ';')
     void exitsById(Long departmentId, Boolean expectedValue) {
-        boolean isRoleExist = departmentRepository.exitsById(departmentId);
+        boolean isRoleExist = departmentRepository.existById(departmentId);
 
         Assertions.assertEquals(expectedValue, isRoleExist);
     }

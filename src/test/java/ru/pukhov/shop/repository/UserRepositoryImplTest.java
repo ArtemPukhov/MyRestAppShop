@@ -142,7 +142,7 @@ class UserRepositoryImplTest {
             "100; false"
     }, delimiter = ';')
     void exitsById(Long roleId, Boolean expectedValue) {
-        boolean isUserExist = userRepository.exitsById(roleId);
+        boolean isUserExist = userRepository.existById(roleId);
 
         Assertions.assertEquals(expectedValue, isUserExist);
     }

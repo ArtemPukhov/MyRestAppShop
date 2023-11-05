@@ -64,7 +64,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     private void checkRoleExist(Long roleId) throws NotFoundException {
-        if (!roleRepository.exitsById(roleId)) {
+        if (!roleRepository.existById(roleId)) {
             throw new NotFoundException("Role not found.");
         }
     }

@@ -72,7 +72,7 @@ class PhoneNumberServiceImplTest {
 
         PhoneNumberUpdateDto dto = new PhoneNumberUpdateDto(expectedId, "+123 123 1111", null);
 
-        Mockito.doReturn(true).when(mockePhoneNumberRepository).exitsById(Mockito.any());
+        Mockito.doReturn(true).when(mockePhoneNumberRepository).existById(Mockito.any());
 
         phoneNumberService.update(dto);
 
@@ -87,7 +87,7 @@ class PhoneNumberServiceImplTest {
     void updateNotFound() {
         PhoneNumberUpdateDto dto = new PhoneNumberUpdateDto(1L, "+123 123 1111", null);
 
-        Mockito.doReturn(false).when(mockePhoneNumberRepository).exitsById(Mockito.any());
+        Mockito.doReturn(false).when(mockePhoneNumberRepository).existById(Mockito.any());
 
         NotFoundException exception = Assertions.assertThrows(
                 NotFoundException.class,
@@ -104,7 +104,7 @@ class PhoneNumberServiceImplTest {
 
         Optional<PhoneNumber> role = Optional.of(new PhoneNumber(expectedId, "+123 123 1111", null));
 
-        Mockito.doReturn(true).when(mockePhoneNumberRepository).exitsById(Mockito.any());
+        Mockito.doReturn(true).when(mockePhoneNumberRepository).existById(Mockito.any());
         Mockito.doReturn(role).when(mockePhoneNumberRepository).findById(Mockito.anyLong());
 
         PhoneNumberOutGoingDto dto = phoneNumberService.findById(expectedId);
@@ -116,7 +116,7 @@ class PhoneNumberServiceImplTest {
     void findByIdNotFound() {
         Optional<Role> role = Optional.empty();
 
-        Mockito.doReturn(false).when(mockePhoneNumberRepository).exitsById(Mockito.any());
+        Mockito.doReturn(false).when(mockePhoneNumberRepository).existById(Mockito.any());
 
         NotFoundException exception = Assertions.assertThrows(
                 NotFoundException.class,

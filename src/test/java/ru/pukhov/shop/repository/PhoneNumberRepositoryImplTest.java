@@ -160,7 +160,7 @@ class PhoneNumberRepositoryImplTest {
             "500, false"
     })
     void exitsById(Long expectedId, Boolean expectedValue) {
-        Boolean resultValue = phoneNumberRepository.exitsById(expectedId);
+        Boolean resultValue = phoneNumberRepository.existById(expectedId);
 
         Assertions.assertEquals(expectedValue, resultValue);
     }
