@@ -1,36 +1,30 @@
-package org.example.repository.impl;
+package ru.pukhov.shop.repository;
 
-import com.github.dockerjava.api.model.ExposedPort;
-import com.github.dockerjava.api.model.HostConfig;
-import com.github.dockerjava.api.model.PortBinding;
-import com.github.dockerjava.api.model.Ports;
-import org.example.model.UserToDepartment;
-import org.example.repository.UserToDepartmentRepository;
-import org.example.util.PropertiesUtil;
-import org.junit.jupiter.api.*;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.ext.ScriptUtils;
 import org.testcontainers.jdbc.JdbcDatabaseDelegate;
 import org.testcontainers.junit.jupiter.Container;
+import ru.pukhov.shop.model.UserToDepartment;
+import ru.pukhov.shop.repository.impl.UserToDepartmentRepositoryImpl;
 
 import java.util.Optional;
 
 class UserToDepartmentRepositoryImplTest {
-    private static final String INIT_SQL = "sql/schema.sql";
+    private static final String INIT_SQL = "sql/schema_for_test.sql";
     public static UserToDepartmentRepository userToDepartmentRepository;
-    private static int containerPort = 5432;
-    private static int localPort = 5432;
     @Container
-    public static PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres:15-alpine")
-            .withDatabaseName("users_db")
-            .withUsername(PropertiesUtil.getProperties("db.username"))
-            .withPassword(PropertiesUtil.getProperties("db.password"))
-            .withExposedPorts(containerPort)
-            .withCreateContainerCmdModifier(cmd -> cmd.withHostConfig(
-                    new HostConfig().withPortBindings(new PortBinding(Ports.Binding.bindPort(localPort), new ExposedPort(containerPort)))
-            ))
+    public static PostgreSQLContainer container = (PostgreSQLContainer) new PostgreSQLContainer("postgres:latest")
+            .withUsername("root")
+            .withPassword("1706")
             .withInitScript(INIT_SQL);
     private static JdbcDatabaseDelegate jdbcDatabaseDelegate;
 
@@ -54,7 +48,7 @@ class UserToDepartmentRepositoryImplTest {
     @Test
     void save() {
         Long expectedUserId = 1L;
-        Long expectedDepartmentId = 4L;
+        Long expectedDepartmentId = 3L;
         UserToDepartment link = new UserToDepartment(
                 null,
                 expectedUserId,
@@ -98,7 +92,7 @@ class UserToDepartmentRepositoryImplTest {
         Boolean expectedValue = true;
         int expectedSize = userToDepartmentRepository.findAll().size();
 
-        UserToDepartment link = new UserToDepartment(null, 1L, 3L);
+        UserToDepartment link = new UserToDepartment(null, 1L, 2L);
         link = userToDepartmentRepository.save(link);
 
         int resultSizeBefore = userToDepartmentRepository.findAll().size();
@@ -115,7 +109,7 @@ class UserToDepartmentRepositoryImplTest {
     @DisplayName("Delete by UserId.")
     @ParameterizedTest
     @CsvSource(value = {
-            "2, true",
+            "2, false",
             "1000, false"
     })
     void deleteByUserId(Long expectedUserId, Boolean expectedValue) {
@@ -152,7 +146,7 @@ class UserToDepartmentRepositoryImplTest {
     @ParameterizedTest
     @CsvSource(value = {
             "1, true, 1, 1",
-            "3, true, 3, 2",
+            "3, false, 3, 2",
             "1000, false, 0, 0"
     })
     void findById(Long expectedId, Boolean expectedValue, Long expectedUserId, Long expectedDepartmentId) {
@@ -203,7 +197,7 @@ class UserToDepartmentRepositoryImplTest {
     @DisplayName("Find by user Id.")
     @ParameterizedTest
     @CsvSource(value = {
-            "3, 1",
+            "3, 0",
             "6, 2",
             "1000, 0"
     })
@@ -245,7 +239,7 @@ class UserToDepartmentRepositoryImplTest {
     @ParameterizedTest
     @CsvSource(value = {
             "1, 1, true",
-            "1, 4, false"
+            "1, 4, true"
     })
     void findByUserIdAndDepartmentId(Long userId, Long departmentId, Boolean expectedValue) {
         Optional<UserToDepartment> link = userToDepartmentRepository.findByUserIdAndDepartmentId(userId, departmentId);

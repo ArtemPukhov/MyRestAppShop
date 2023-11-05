@@ -1,8 +1,9 @@
-package org.example.repository;
+package ru.pukhov.shop.repository;
 
-import org.example.model.Department;
-import org.example.model.User;
-import org.example.model.UserToDepartment;
+
+import ru.pukhov.shop.model.Department;
+import ru.pukhov.shop.model.User;
+import ru.pukhov.shop.model.UserToDepartment;
 
 import java.util.List;
 import java.util.Optional;

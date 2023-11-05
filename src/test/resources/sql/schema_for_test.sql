@@ -1,8 +1,8 @@
-DROP TABLE IF EXISTS roles CASCADE;
-DROP TABLE IF EXISTS departments CASCADE;
-DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS users_departments CASCADE;
 DROP TABLE IF EXISTS phone_numbers CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS roles CASCADE;
+DROP TABLE IF EXISTS departments CASCADE;
 
 CREATE TABLE IF NOT EXISTS roles
 (
@@ -59,7 +59,7 @@ VALUES ('Petr', 'Petrov', 1),      -- 1
        ('Maria', 'Petrova', 3),       -- 4
        ('Igor', 'Sidorov', 3),   -- 5
        ('Artem', 'Artemov', 4),     -- 6
-       ('Olga', 'Olgova', 5); -- 7
+       ('Olga', 'Orlova', 5); -- 7
 
 INSERT INTO users_departments (user_id, department_id)
 VALUES (1, 1), -- 1

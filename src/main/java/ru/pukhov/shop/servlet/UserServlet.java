@@ -1,23 +1,23 @@
-package org.example.servlet;
+package ru.pukhov.shop.servlet;
+
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.exception.NotFoundException;
-import org.example.service.UserService;
-import org.example.service.impl.UserServiceImpl;
-import org.example.servlet.dto.UserIncomingDto;
-import org.example.servlet.dto.UserOutGoingDto;
-import org.example.servlet.dto.UserUpdateDto;
+import ru.pukhov.shop.exception.NotFoundException;
+import ru.pukhov.shop.service.UserService;
+import ru.pukhov.shop.service.impl.UserServiceImpl;
+import ru.pukhov.shop.servlet.dto.UserIncomingDto;
+import ru.pukhov.shop.servlet.dto.UserOutGoingDto;
+import ru.pukhov.shop.servlet.dto.UserUpdateDto;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Optional;
-
 
 @WebServlet(urlPatterns = {"/user/*"})
 public class UserServlet extends HttpServlet {

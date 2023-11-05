@@ -1,4 +1,4 @@
-package org.example.repository;
+package ru.pukhov.shop.repository;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,12 +1,10 @@
-package org.example.repository.impl;
+package ru.pukhov.shop.repository;
+
 
 import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.HostConfig;
 import com.github.dockerjava.api.model.PortBinding;
 import com.github.dockerjava.api.model.Ports;
-import org.example.model.Department;
-import org.example.repository.DepartmentRepository;
-import org.example.util.PropertiesUtil;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -15,6 +13,9 @@ import org.testcontainers.ext.ScriptUtils;
 import org.testcontainers.jdbc.JdbcDatabaseDelegate;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import ru.pukhov.shop.model.Department;
+import ru.pukhov.shop.repository.impl.DepartmentRepositoryImpl;
+import ru.pukhov.shop.util.PropertiesUtil;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,19 +23,12 @@ import java.util.Optional;
 @Testcontainers
 @Tag("DockerRequired")
 class DepartmentRepositoryImplTest {
-    private static final String INIT_SQL = "sql/schema.sql";
+    private static final String INIT_SQL = "sql/schema_for_test.sql";
     public static DepartmentRepository departmentRepository;
-    private static int containerPort = 5432;
-    private static int localPort = 5432;
     @Container
-    public static PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres:15-alpine")
-            .withDatabaseName("users_db")
-            .withUsername(PropertiesUtil.getProperties("db.username"))
-            .withPassword(PropertiesUtil.getProperties("db.password"))
-            .withExposedPorts(containerPort)
-            .withCreateContainerCmdModifier(cmd -> cmd.withHostConfig(
-                    new HostConfig().withPortBindings(new PortBinding(Ports.Binding.bindPort(localPort), new ExposedPort(containerPort)))
-            ))
+    public static PostgreSQLContainer container = (PostgreSQLContainer) new PostgreSQLContainer("postgres:latest")
+            .withUsername("root")
+            .withPassword("1706")
             .withInitScript(INIT_SQL);
     private static JdbcDatabaseDelegate jdbcDatabaseDelegate;
 
@@ -57,7 +51,7 @@ class DepartmentRepositoryImplTest {
 
     @Test
     void save() {
-        String expectedName = "new Department Yo!";
+        String expectedName = "New department";
         Department department = new Department(
                 null,
                 expectedName,
@@ -73,7 +67,7 @@ class DepartmentRepositoryImplTest {
 
     @Test
     void update() {
-        String expectedName = "Update department name";
+        String expectedName = "Update department";
 
         Department department = departmentRepository.findById(2L).get();
         String oldName = department.getName();
@@ -94,7 +88,7 @@ class DepartmentRepositoryImplTest {
         Boolean expectedValue = true;
         int expectedSize = departmentRepository.findAll().size();
 
-        Department tempDepartment = new Department(null, "New department", List.of());
+        Department tempDepartment = new Department(null, "New delete department", List.of());
         tempDepartment = departmentRepository.save(tempDepartment);
 
         int resultSizeBefore = departmentRepository.findAll().size();

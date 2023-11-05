@@ -1,11 +1,12 @@
-package org.example.repository.impl;
+package ru.pukhov.shop.repository.impl;
 
-import org.example.db.ConnectionManager;
-import org.example.db.ConnectionManagerImpl;
-import org.example.exception.RepositoryException;
-import org.example.model.PhoneNumber;
-import org.example.model.User;
-import org.example.repository.PhoneNumberRepository;
+
+import ru.pukhov.shop.db.ConnectionManager;
+import ru.pukhov.shop.db.ConnectionManagerImpl;
+import ru.pukhov.shop.exception.RepositoryException;
+import ru.pukhov.shop.model.PhoneNumber;
+import ru.pukhov.shop.model.User;
+import ru.pukhov.shop.repository.PhoneNumberRepository;
 
 import java.sql.*;
 import java.util.ArrayList;

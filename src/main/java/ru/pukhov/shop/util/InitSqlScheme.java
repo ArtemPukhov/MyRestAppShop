@@ -1,7 +1,7 @@
-package org.example.util;
+package ru.pukhov.shop.util;
 
-import org.example.db.ConnectionManager;
-import org.example.exception.RepositoryException;
+import ru.pukhov.shop.db.ConnectionManager;
+import ru.pukhov.shop.exception.RepositoryException;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;

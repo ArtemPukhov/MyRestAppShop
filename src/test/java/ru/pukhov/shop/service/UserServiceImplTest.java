@@ -1,18 +1,19 @@
-package org.example.service.impl;
+package ru.pukhov.shop.service;
 
-import org.example.exception.NotFoundException;
-import org.example.model.Role;
-import org.example.model.User;
-import org.example.repository.UserRepository;
-import org.example.repository.impl.UserRepositoryImpl;
-import org.example.service.UserService;
-import org.example.servlet.dto.RoleUpdateDto;
-import org.example.servlet.dto.UserIncomingDto;
-import org.example.servlet.dto.UserOutGoingDto;
-import org.example.servlet.dto.UserUpdateDto;
+
 import org.junit.jupiter.api.*;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
+import ru.pukhov.shop.exception.NotFoundException;
+import ru.pukhov.shop.model.Role;
+import ru.pukhov.shop.model.User;
+import ru.pukhov.shop.repository.UserRepository;
+import ru.pukhov.shop.repository.impl.UserRepositoryImpl;
+import ru.pukhov.shop.service.impl.UserServiceImpl;
+import ru.pukhov.shop.servlet.dto.RoleUpdateDto;
+import ru.pukhov.shop.servlet.dto.UserIncomingDto;
+import ru.pukhov.shop.servlet.dto.UserOutGoingDto;
+import ru.pukhov.shop.servlet.dto.UserUpdateDto;
 
 import java.lang.reflect.Field;
 import java.util.List;

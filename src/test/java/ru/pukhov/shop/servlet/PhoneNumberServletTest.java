@@ -1,12 +1,8 @@
-package org.example.servlet;
+package ru.pukhov.shop.servlet;
+
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.exception.NotFoundException;
-import org.example.service.PhoneNumberService;
-import org.example.service.impl.PhoneNumberServiceImpl;
-import org.example.servlet.dto.PhoneNumberIncomingDto;
-import org.example.servlet.dto.PhoneNumberUpdateDto;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -14,6 +10,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import ru.pukhov.shop.exception.NotFoundException;
+import ru.pukhov.shop.service.PhoneNumberService;
+import ru.pukhov.shop.service.impl.PhoneNumberServiceImpl;
+import ru.pukhov.shop.servlet.dto.PhoneNumberIncomingDto;
+import ru.pukhov.shop.servlet.dto.PhoneNumberUpdateDto;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,14 +1,9 @@
-package org.example.model;
+package ru.pukhov.shop.model;
 
-import org.example.repository.UserRepository;
-import org.example.repository.impl.UserRepositoryImpl;
 
-/**
- * The Phone Number of User
- * Lazy User getter from Repository.
- * Relation:
- * One To One: PhoneNumber - User
- */
+import ru.pukhov.shop.repository.UserRepository;
+import ru.pukhov.shop.repository.impl.UserRepositoryImpl;
+
 public class PhoneNumber {
     private static final UserRepository userRepository = UserRepositoryImpl.getInstance();
     private Long id;

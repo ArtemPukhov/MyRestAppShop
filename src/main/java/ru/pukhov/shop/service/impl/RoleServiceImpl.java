@@ -1,15 +1,16 @@
-package org.example.service.impl;
+package ru.pukhov.shop.service.impl;
 
-import org.example.exception.NotFoundException;
-import org.example.model.Role;
-import org.example.repository.RoleRepository;
-import org.example.repository.impl.RoleRepositoryImpl;
-import org.example.service.RoleService;
-import org.example.servlet.dto.RoleIncomingDto;
-import org.example.servlet.dto.RoleOutGoingDto;
-import org.example.servlet.dto.RoleUpdateDto;
-import org.example.servlet.mapper.RoleDtoMapper;
-import org.example.servlet.mapper.impl.RoleDtoMapperImpl;
+
+import ru.pukhov.shop.exception.NotFoundException;
+import ru.pukhov.shop.model.Role;
+import ru.pukhov.shop.repository.RoleRepository;
+import ru.pukhov.shop.repository.impl.RoleRepositoryImpl;
+import ru.pukhov.shop.service.RoleService;
+import ru.pukhov.shop.servlet.dto.RoleIncomingDto;
+import ru.pukhov.shop.servlet.dto.RoleOutGoingDto;
+import ru.pukhov.shop.servlet.dto.RoleUpdateDto;
+import ru.pukhov.shop.servlet.mapper.RoleDtoMapper;
+import ru.pukhov.shop.servlet.mapper.impl.RoleDtoMapperImpl;
 
 import java.util.List;
 

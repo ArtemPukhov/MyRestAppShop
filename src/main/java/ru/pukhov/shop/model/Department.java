@@ -1,15 +1,12 @@
-package org.example.model;
+package ru.pukhov.shop.model;
 
-import org.example.repository.UserToDepartmentRepository;
-import org.example.repository.impl.UserToDepartmentRepositoryImpl;
+
+
+import ru.pukhov.shop.repository.UserToDepartmentRepository;
+import ru.pukhov.shop.repository.impl.UserToDepartmentRepositoryImpl;
 
 import java.util.List;
 
-/**
- * The Department where User work
- * Relation:
- * Many To Many: Department <-> User
- */
 public class Department {
     private static final UserToDepartmentRepository userToDepartmentRepository = UserToDepartmentRepositoryImpl.getInstance();
     private Long id;

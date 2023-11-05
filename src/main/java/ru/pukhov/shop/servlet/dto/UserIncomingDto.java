@@ -1,6 +1,7 @@
-package org.example.servlet.dto;
+package ru.pukhov.shop.servlet.dto;
 
-import org.example.model.Role;
+
+import ru.pukhov.shop.model.Role;
 
 public class UserIncomingDto {
     private String firstName;

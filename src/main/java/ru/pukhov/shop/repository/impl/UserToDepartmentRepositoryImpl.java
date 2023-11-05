@@ -1,14 +1,15 @@
-package org.example.repository.impl;
+package ru.pukhov.shop.repository.impl;
 
-import org.example.db.ConnectionManager;
-import org.example.db.ConnectionManagerImpl;
-import org.example.exception.RepositoryException;
-import org.example.model.Department;
-import org.example.model.User;
-import org.example.model.UserToDepartment;
-import org.example.repository.DepartmentRepository;
-import org.example.repository.UserRepository;
-import org.example.repository.UserToDepartmentRepository;
+
+import ru.pukhov.shop.db.ConnectionManager;
+import ru.pukhov.shop.db.ConnectionManagerImpl;
+import ru.pukhov.shop.exception.RepositoryException;
+import ru.pukhov.shop.model.Department;
+import ru.pukhov.shop.model.User;
+import ru.pukhov.shop.model.UserToDepartment;
+import ru.pukhov.shop.repository.DepartmentRepository;
+import ru.pukhov.shop.repository.UserRepository;
+import ru.pukhov.shop.repository.UserToDepartmentRepository;
 
 import java.sql.*;
 import java.util.ArrayList;

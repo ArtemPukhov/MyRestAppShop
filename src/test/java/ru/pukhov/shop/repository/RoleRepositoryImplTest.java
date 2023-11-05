@@ -1,12 +1,10 @@
-package org.example.repository.impl;
+package ru.pukhov.shop.repository;
+
 
 import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.HostConfig;
 import com.github.dockerjava.api.model.PortBinding;
 import com.github.dockerjava.api.model.Ports;
-import org.example.model.Role;
-import org.example.repository.RoleRepository;
-import org.example.util.PropertiesUtil;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -15,24 +13,20 @@ import org.testcontainers.ext.ScriptUtils;
 import org.testcontainers.jdbc.JdbcDatabaseDelegate;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import ru.pukhov.shop.model.Role;
+import ru.pukhov.shop.repository.impl.RoleRepositoryImpl;
+import ru.pukhov.shop.util.PropertiesUtil;
 
 import java.util.Optional;
 
 @Testcontainers
 @Tag("DockerRequired")
 class RoleRepositoryImplTest {
-    private static final String INIT_SQL = "sql/schema.sql";
-    private static final int containerPort = 5432;
-    private static final int localPort = 5432;
+    private static final String INIT_SQL = "sql/schema_for_test.sql";
     @Container
-    public static PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres:15-alpine")
-            .withDatabaseName("users_db")
-            .withUsername(PropertiesUtil.getProperties("db.username"))
-            .withPassword(PropertiesUtil.getProperties("db.password"))
-            .withExposedPorts(containerPort)
-            .withCreateContainerCmdModifier(cmd -> cmd.withHostConfig(
-                    new HostConfig().withPortBindings(new PortBinding(Ports.Binding.bindPort(localPort), new ExposedPort(containerPort)))
-            ))
+    public static PostgreSQLContainer container = (PostgreSQLContainer) new PostgreSQLContainer("postgres:latest")
+            .withUsername("root")
+            .withPassword("1706")
             .withInitScript(INIT_SQL);
     public static RoleRepository roleRepository;
     private static JdbcDatabaseDelegate jdbcDatabaseDelegate;
@@ -56,7 +50,7 @@ class RoleRepositoryImplTest {
 
     @Test
     void save() {
-        String expectedName = "new Role Name";
+        String expectedName = "new Name";
         Role role = new Role(null, expectedName);
         role = roleRepository.save(role);
         Optional<Role> resultRole = roleRepository.findById(role.getId());
@@ -67,7 +61,7 @@ class RoleRepositoryImplTest {
 
     @Test
     void update() {
-        String expectedName = "UPDATE Role Name";
+        String expectedName = "update Name";
 
         Role roleForUpdate = roleRepository.findById(3L).get();
         String oldRoleName = roleForUpdate.getName();

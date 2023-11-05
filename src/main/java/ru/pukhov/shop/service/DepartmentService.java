@@ -1,9 +1,10 @@
-package org.example.service;
+package ru.pukhov.shop.service;
 
-import org.example.exception.NotFoundException;
-import org.example.servlet.dto.DepartmentIncomingDto;
-import org.example.servlet.dto.DepartmentOutGoingDto;
-import org.example.servlet.dto.DepartmentUpdateDto;
+
+import ru.pukhov.shop.exception.NotFoundException;
+import ru.pukhov.shop.servlet.dto.DepartmentIncomingDto;
+import ru.pukhov.shop.servlet.dto.DepartmentOutGoingDto;
+import ru.pukhov.shop.servlet.dto.DepartmentUpdateDto;
 
 import java.util.List;
 

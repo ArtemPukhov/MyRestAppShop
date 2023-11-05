@@ -1,23 +1,23 @@
-package org.example.servlet;
+package ru.pukhov.shop.servlet;
+
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.exception.NotFoundException;
-import org.example.service.PhoneNumberService;
-import org.example.service.impl.PhoneNumberServiceImpl;
-import org.example.servlet.dto.PhoneNumberIncomingDto;
-import org.example.servlet.dto.PhoneNumberOutGoingDto;
-import org.example.servlet.dto.PhoneNumberUpdateDto;
+import ru.pukhov.shop.exception.NotFoundException;
+import ru.pukhov.shop.service.PhoneNumberService;
+import ru.pukhov.shop.service.impl.PhoneNumberServiceImpl;
+import ru.pukhov.shop.servlet.dto.PhoneNumberIncomingDto;
+import ru.pukhov.shop.servlet.dto.PhoneNumberOutGoingDto;
+import ru.pukhov.shop.servlet.dto.PhoneNumberUpdateDto;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Optional;
-
 
 @WebServlet(urlPatterns = {"/phone/*"})
 public class PhoneNumberServlet extends HttpServlet {

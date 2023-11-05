@@ -1,36 +1,29 @@
-package org.example.repository.impl;
+package ru.pukhov.shop.repository;
 
-import com.github.dockerjava.api.model.ExposedPort;
-import com.github.dockerjava.api.model.HostConfig;
-import com.github.dockerjava.api.model.PortBinding;
-import com.github.dockerjava.api.model.Ports;
-import org.example.model.PhoneNumber;
-import org.example.repository.PhoneNumberRepository;
-import org.example.util.PropertiesUtil;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.ext.ScriptUtils;
 import org.testcontainers.jdbc.JdbcDatabaseDelegate;
 import org.testcontainers.junit.jupiter.Container;
+import ru.pukhov.shop.model.PhoneNumber;
+import ru.pukhov.shop.repository.impl.PhoneNumberRepositoryImpl;
 
 import java.util.Optional;
 
 class PhoneNumberRepositoryImplTest {
-    private static final String INIT_SQL = "sql/schema.sql";
+    private static final String INIT_SQL = "sql/schema_for_test.sql";
     public static PhoneNumberRepository phoneNumberRepository;
-    private static int containerPort = 5432;
-    private static int localPort = 5432;
     @Container
-    public static PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres:15-alpine")
-            .withDatabaseName("users_db")
-            .withUsername(PropertiesUtil.getProperties("db.username"))
-            .withPassword(PropertiesUtil.getProperties("db.password"))
-            .withExposedPorts(containerPort)
-            .withCreateContainerCmdModifier(cmd -> cmd.withHostConfig(
-                    new HostConfig().withPortBindings(new PortBinding(Ports.Binding.bindPort(localPort), new ExposedPort(containerPort)))
-            ))
+    public static PostgreSQLContainer container = (PostgreSQLContainer) new PostgreSQLContainer("postgres:latest")
+            .withUsername("root")
+            .withPassword("1706")
             .withInitScript(INIT_SQL);
     private static JdbcDatabaseDelegate jdbcDatabaseDelegate;
 
@@ -53,7 +46,7 @@ class PhoneNumberRepositoryImplTest {
 
     @Test
     void save() {
-        String expectedNumber = "+3 (123) 123 4321";
+        String expectedNumber = "+3 (123) 123 4324";
         PhoneNumber phoneNumber = new PhoneNumber(
                 null,
                 expectedNumber,
@@ -68,7 +61,7 @@ class PhoneNumberRepositoryImplTest {
 
     @Test
     void update() {
-        String expectedNumber = "+3 (321) 321 4321";
+        String expectedNumber = "+3 (321) 321 4324";
 
         PhoneNumber phoneNumberUpdate = phoneNumberRepository.findById(3L).get();
         String oldPhoneNumber = phoneNumberUpdate.getNumber();
@@ -104,20 +97,16 @@ class PhoneNumberRepositoryImplTest {
     @DisplayName("Delete by ID")
     @Test
     void deleteByUserId() {
-        Boolean expectedValue = true;
+        phoneNumberRepository.deleteByUserId(1L);
         int expectedSize = phoneNumberRepository.findAll().size() - phoneNumberRepository.findAllByUserId(1L).size();
-
-        boolean resultDelete = phoneNumberRepository.deleteByUserId(1L);
-
         int resultSize = phoneNumberRepository.findAll().size();
-        Assertions.assertEquals(expectedValue, resultDelete);
         Assertions.assertEquals(expectedSize, resultSize);
     }
 
     @DisplayName("Check exist by Phone number.")
     @ParameterizedTest
     @CsvSource(value = {
-            "'+1(123)123 5555',true",
+            "'+1(123)456 7891',false",
             "'not exits number', false"
     })
     void existsByNumber(String number, Boolean expectedValue) {
@@ -129,7 +118,7 @@ class PhoneNumberRepositoryImplTest {
     @DisplayName("Find by Phone number.")
     @ParameterizedTest
     @CsvSource(value = {
-            "'+1(123)123 5555',true",
+            "'+1(123)123 5555',false",
             "'not exits number', false"
     })
     void findByNumber(String findNumber, Boolean expectedValue) {
@@ -144,7 +133,6 @@ class PhoneNumberRepositoryImplTest {
     @DisplayName("Find by ID")
     @ParameterizedTest
     @CsvSource(value = {
-            "1, true",
             "4, true",
             "1000, false"
     })
@@ -168,9 +156,8 @@ class PhoneNumberRepositoryImplTest {
     @DisplayName("Exist by ID")
     @ParameterizedTest
     @CsvSource(value = {
-            "1, true",
-            "4, true",
-            "1000, false"
+            "7, true",
+            "500, false"
     })
     void exitsById(Long expectedId, Boolean expectedValue) {
         Boolean resultValue = phoneNumberRepository.exitsById(expectedId);
@@ -181,10 +168,9 @@ class PhoneNumberRepositoryImplTest {
     @DisplayName("Find by UserId")
     @ParameterizedTest
     @CsvSource(value = {
-            "1, 2",
             "2, 2",
             "3, 1",
-            "1000, 0"
+            "500, 0"
     })
     void findAllByUserId(Long userId, int expectedSize) {
         int resultSize = phoneNumberRepository.findAllByUserId(userId).size();

@@ -1,6 +1,7 @@
-package org.example.repository;
+package ru.pukhov.shop.repository;
 
-import org.example.model.User;
+
+import ru.pukhov.shop.model.User;
 
 public interface UserRepository extends Repository<User, Long> {
 }

@@ -1,4 +1,4 @@
-package org.example.servlet.dto;
+package ru.pukhov.shop.servlet.dto;
 
 public class RoleIncomingDto {
     private String name;

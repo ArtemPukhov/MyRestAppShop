@@ -1,4 +1,4 @@
-package org.example.exception;
+package ru.pukhov.shop.exception;
 
 import java.sql.SQLException;
 

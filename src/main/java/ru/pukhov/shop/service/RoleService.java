@@ -1,9 +1,10 @@
-package org.example.service;
+package ru.pukhov.shop.service;
 
-import org.example.exception.NotFoundException;
-import org.example.servlet.dto.RoleIncomingDto;
-import org.example.servlet.dto.RoleOutGoingDto;
-import org.example.servlet.dto.RoleUpdateDto;
+
+import ru.pukhov.shop.exception.NotFoundException;
+import ru.pukhov.shop.servlet.dto.RoleIncomingDto;
+import ru.pukhov.shop.servlet.dto.RoleOutGoingDto;
+import ru.pukhov.shop.servlet.dto.RoleUpdateDto;
 
 import java.util.List;
 

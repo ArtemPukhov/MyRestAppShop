@@ -1,20 +1,13 @@
-package org.example.model;
+package ru.pukhov.shop.model;
 
-import org.example.repository.PhoneNumberRepository;
-import org.example.repository.UserToDepartmentRepository;
-import org.example.repository.impl.PhoneNumberRepositoryImpl;
-import org.example.repository.impl.UserToDepartmentRepositoryImpl;
+
+import ru.pukhov.shop.repository.PhoneNumberRepository;
+import ru.pukhov.shop.repository.UserToDepartmentRepository;
+import ru.pukhov.shop.repository.impl.PhoneNumberRepositoryImpl;
+import ru.pukhov.shop.repository.impl.UserToDepartmentRepositoryImpl;
 
 import java.util.List;
 
-/**
- * User entity
- * <p>
- * Relation:
- * One To Many: User -> PhoneNumber
- * Many To Many: User <-> Department
- * Many To One: User -> Role
- */
 public class User {
     private static final PhoneNumberRepository phoneNumberRepository = PhoneNumberRepositoryImpl.getInstance();
     private static final UserToDepartmentRepository userToDepartmentRepository = UserToDepartmentRepositoryImpl.getInstance();

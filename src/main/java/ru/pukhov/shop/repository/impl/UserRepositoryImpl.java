@@ -1,10 +1,11 @@
-package org.example.repository.impl;
+package ru.pukhov.shop.repository.impl;
 
-import org.example.db.ConnectionManager;
-import org.example.db.ConnectionManagerImpl;
-import org.example.exception.RepositoryException;
-import org.example.model.*;
-import org.example.repository.*;
+
+import ru.pukhov.shop.db.ConnectionManager;
+import ru.pukhov.shop.db.ConnectionManagerImpl;
+import ru.pukhov.shop.exception.RepositoryException;
+import ru.pukhov.shop.model.*;
+import ru.pukhov.shop.repository.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -60,16 +61,6 @@ public class UserRepositoryImpl implements UserRepository {
         return instance;
     }
 
-    /**
-     * Сохранят в базу сущность пользователя,
-     * 1. сохраняем самого пользователя,
-     * 2. сохраняем его роль
-     * 3. сохраняем список телефонов.
-     * 4. сохраняем список отделов.
-     *
-     * @param user
-     * @return
-     */
     @Override
     public User save(User user) {
         try (Connection connection = connectionManager.getConnection();
@@ -107,14 +98,6 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
 
-    /**
-     * 1. Проверяем список на пустоту
-     * 1.1 если пустой то удаляем все записи из базы которые == userId.
-     * 1.2 получаем все записи которые уже есть в базе
-     * 1.3 сверяем то что есть, добавляем, обновляем, или удаляем.
-     *
-     * @param user
-     */
     private void saveDepartmentList(User user) {
         if (user.getDepartmentList() != null && !user.getDepartmentList().isEmpty()) {
             List<Long> departmentIdList = new ArrayList<>(
@@ -146,14 +129,6 @@ public class UserRepositoryImpl implements UserRepository {
         }
     }
 
-    /**
-     * 1. Проверяем список на пустоту
-     * 1.1 если пустой то удаляем все записи из базы которые == userId.
-     * 1.2 получаем все записи которые уже есть в базе
-     * 1.3 сверяем то что есть, добавляем, обновляем, или удаляем.
-     *
-     * @param user
-     */
     private void savePhoneNumberList(User user) {
         if (user.getPhoneNumberList() != null && !user.getPhoneNumberList().isEmpty()) {
             List<PhoneNumber> phoneNumberList = new ArrayList<>(user.getPhoneNumberList());
@@ -191,15 +166,6 @@ public class UserRepositoryImpl implements UserRepository {
 
     }
 
-
-    /**
-     * Проверяем создается ли новый Номер.
-     * Производим поиск по базе по номеру.
-     * Если номер найден, проверяем, закрепляется ли этот номер за какимто пользователем.
-     * Если закрепляется тогда устанавливаем ID на тот который находится в базе.
-     *
-     * @param phoneNumber
-     */
     private void saveOrUpdateExitsNumber(PhoneNumber phoneNumber) {
         if (phoneNumberRepository.existsByNumber(phoneNumber.getNumber())) {
             Optional<PhoneNumber> exitNumber = phoneNumberRepository.findByNumber(phoneNumber.getNumber());

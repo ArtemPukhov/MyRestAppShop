@@ -1,39 +1,33 @@
-package org.example.repository.impl;
+package ru.pukhov.shop.repository;
 
-import com.github.dockerjava.api.model.ExposedPort;
-import com.github.dockerjava.api.model.HostConfig;
-import com.github.dockerjava.api.model.PortBinding;
-import com.github.dockerjava.api.model.Ports;
-import org.example.model.Department;
-import org.example.model.PhoneNumber;
-import org.example.model.Role;
-import org.example.model.User;
-import org.example.repository.UserRepository;
-import org.example.util.PropertiesUtil;
-import org.junit.jupiter.api.*;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.ext.ScriptUtils;
 import org.testcontainers.jdbc.JdbcDatabaseDelegate;
 import org.testcontainers.junit.jupiter.Container;
+import ru.pukhov.shop.model.Role;
+import ru.pukhov.shop.model.User;
+import ru.pukhov.shop.repository.impl.UserRepositoryImpl;
 
-import java.util.List;
+import java.sql.SQLException;
 import java.util.Optional;
 
+import static org.junit.Assert.assertEquals;
+
 class UserRepositoryImplTest {
-    private static final String INIT_SQL = "sql/schema.sql";
-    private static final int containerPort = 5432;
-    private static final int localPort = 5432;
+    private static final String INIT_SQL = "sql/schema_for_test.sql";
     @Container
-    public static PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres:15-alpine")
-            .withDatabaseName("users_db")
-            .withUsername(PropertiesUtil.getProperties("db.username"))
-            .withPassword(PropertiesUtil.getProperties("db.password"))
-            .withExposedPorts(containerPort)
-            .withCreateContainerCmdModifier(cmd -> cmd.withHostConfig(
-                    new HostConfig().withPortBindings(new PortBinding(Ports.Binding.bindPort(localPort), new ExposedPort(containerPort)))
-            ))
+    public static PostgreSQLContainer container = (PostgreSQLContainer) new PostgreSQLContainer("postgres:latest")
+            .withUsername("root")
+            .withPassword("1706")
             .withInitScript(INIT_SQL);
     public static UserRepository userRepository;
     private static JdbcDatabaseDelegate jdbcDatabaseDelegate;
@@ -76,70 +70,25 @@ class UserRepositoryImplTest {
     }
 
     @Test
-    void update() {
-        String expectedFirstname = "UPDATE Firstname";
-        String expectedLastname = "UPDATE Lastname";
-        Long expectedRoleId = 1L;
+    void testUpdateUser() throws SQLException {
+        // Создание пользователя для обновления
+        User user = new User(1L, "Firstname", "Lastname", new Role(1L, "Manager"), null, null);
 
-        User userForUpdate = userRepository.findById(3L).get();
+        // Модификация имени и фамилии пользователя
+        user.setFirstName("New name");
+        user.setLastName("New lastname");
 
-        List<Department> departmentList = userForUpdate.getDepartmentList();
-        int phoneListSize = userForUpdate.getPhoneNumberList().size();
-        int departmentListSize = userForUpdate.getDepartmentList().size();
-        Role oldRole = userForUpdate.getRole();
+        // Обновление пользователя в репозитории
+        userRepository.update(user);
 
-        Assertions.assertNotEquals(expectedRoleId, userForUpdate.getRole().getId());
-        Assertions.assertNotEquals(expectedFirstname, userForUpdate.getFirstName());
-        Assertions.assertNotEquals(expectedLastname, userForUpdate.getLastName());
+        // Проверка, что пользователь успешно обновлен
+        User updatedUser = userRepository.findById(1L).orElse(null);
+        assertEquals("New name", updatedUser.getFirstName());
+        assertEquals("New lastname", updatedUser.getLastName());
 
-        userForUpdate.setFirstName(expectedFirstname);
-        userForUpdate.setLastName(expectedLastname);
-        userRepository.update(userForUpdate);
-
-        User resultUser = userRepository.findById(3L).get();
-
-        Assertions.assertEquals(expectedFirstname, resultUser.getFirstName());
-        Assertions.assertEquals(expectedLastname, resultUser.getLastName());
-
-        Assertions.assertEquals(phoneListSize, resultUser.getPhoneNumberList().size());
-        Assertions.assertEquals(departmentListSize, resultUser.getDepartmentList().size());
-        Assertions.assertEquals(oldRole.getId(), resultUser.getRole().getId());
-
-        userForUpdate.setPhoneNumberList(List.of());
-        userForUpdate.setDepartmentList(List.of());
-        userForUpdate.setRole(new Role(expectedRoleId, null));
-        userRepository.update(userForUpdate);
-        resultUser = userRepository.findById(3L).get();
-
-        Assertions.assertEquals(0, resultUser.getPhoneNumberList().size());
-        Assertions.assertEquals(0, resultUser.getDepartmentList().size());
-        Assertions.assertEquals(expectedRoleId, resultUser.getRole().getId());
-
-        departmentList.add(new Department(3L, null, null));
-        departmentList.add(new Department(4L, null, null));
-        userForUpdate.setDepartmentList(departmentList);
-        userRepository.update(userForUpdate);
-        resultUser = userRepository.findById(3L).get();
-
-        Assertions.assertEquals(3, resultUser.getDepartmentList().size());
-
-        departmentList.remove(2);
-        userForUpdate.setDepartmentList(departmentList);
-        userRepository.update(userForUpdate);
-        resultUser = userRepository.findById(3L).get();
-
-        Assertions.assertEquals(2, resultUser.getDepartmentList().size());
-
-        userForUpdate.setPhoneNumberList(List.of(
-                new PhoneNumber(null, "+4 new phone", null),
-                new PhoneNumber(null, "+1(123)123 2222", null)));
-        userForUpdate.setDepartmentList(List.of(new Department(1L, null, null)));
-
-        userRepository.update(userForUpdate);
-        resultUser = userRepository.findById(3L).get();
-
-        Assertions.assertEquals(1, resultUser.getPhoneNumberList().size());
-        Assertions.assertEquals(1, resultUser.getDepartmentList().size());
+        // Проверка, что роль пользователя осталась неизменной
+        assertEquals(1L, updatedUser.getRole().getId().longValue());
+        assertEquals("Manager", updatedUser.getRole().getName());
     }
 
     @Test

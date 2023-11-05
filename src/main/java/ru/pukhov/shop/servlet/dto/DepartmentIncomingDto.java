@@ -1,4 +1,4 @@
-package org.example.servlet.dto;
+package ru.pukhov.shop.servlet.dto;
 
 public class DepartmentIncomingDto {
     private String name;

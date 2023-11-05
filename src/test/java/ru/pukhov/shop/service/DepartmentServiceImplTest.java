@@ -1,21 +1,22 @@
-package org.example.service.impl;
+package ru.pukhov.shop.service;
 
-import org.example.exception.NotFoundException;
-import org.example.model.Department;
-import org.example.model.UserToDepartment;
-import org.example.repository.DepartmentRepository;
-import org.example.repository.UserRepository;
-import org.example.repository.UserToDepartmentRepository;
-import org.example.repository.impl.DepartmentRepositoryImpl;
-import org.example.repository.impl.UserRepositoryImpl;
-import org.example.repository.impl.UserToDepartmentRepositoryImpl;
-import org.example.service.DepartmentService;
-import org.example.servlet.dto.DepartmentIncomingDto;
-import org.example.servlet.dto.DepartmentOutGoingDto;
-import org.example.servlet.dto.DepartmentUpdateDto;
+
 import org.junit.jupiter.api.*;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
+import ru.pukhov.shop.exception.NotFoundException;
+import ru.pukhov.shop.model.Department;
+import ru.pukhov.shop.model.UserToDepartment;
+import ru.pukhov.shop.repository.DepartmentRepository;
+import ru.pukhov.shop.repository.UserRepository;
+import ru.pukhov.shop.repository.UserToDepartmentRepository;
+import ru.pukhov.shop.repository.impl.DepartmentRepositoryImpl;
+import ru.pukhov.shop.repository.impl.UserRepositoryImpl;
+import ru.pukhov.shop.repository.impl.UserToDepartmentRepositoryImpl;
+import ru.pukhov.shop.service.impl.DepartmentServiceImpl;
+import ru.pukhov.shop.servlet.dto.DepartmentIncomingDto;
+import ru.pukhov.shop.servlet.dto.DepartmentOutGoingDto;
+import ru.pukhov.shop.servlet.dto.DepartmentUpdateDto;
 
 import java.lang.reflect.Field;
 import java.util.List;

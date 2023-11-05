@@ -1,23 +1,23 @@
-package org.example.servlet;
+package ru.pukhov.shop.servlet;
+
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.exception.NotFoundException;
-import org.example.service.RoleService;
-import org.example.service.impl.RoleServiceImpl;
-import org.example.servlet.dto.RoleIncomingDto;
-import org.example.servlet.dto.RoleOutGoingDto;
-import org.example.servlet.dto.RoleUpdateDto;
+import ru.pukhov.shop.exception.NotFoundException;
+import ru.pukhov.shop.service.RoleService;
+import ru.pukhov.shop.service.impl.RoleServiceImpl;
+import ru.pukhov.shop.servlet.dto.RoleIncomingDto;
+import ru.pukhov.shop.servlet.dto.RoleOutGoingDto;
+import ru.pukhov.shop.servlet.dto.RoleUpdateDto;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Optional;
-
 
 @WebServlet(urlPatterns = {"/role/*"})
 public class RoleServlet extends HttpServlet {

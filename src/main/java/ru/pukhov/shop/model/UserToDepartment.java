@@ -1,9 +1,6 @@
-package org.example.model;
+package ru.pukhov.shop.model;
 
-/**
- * ManyToMany
- * User <-> Department
- */
+
 public class UserToDepartment {
     private Long id;
     private Long userId;

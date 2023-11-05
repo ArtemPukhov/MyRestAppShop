@@ -1,15 +1,16 @@
-package org.example.service.impl;
+package ru.pukhov.shop.service.impl;
 
-import org.example.exception.NotFoundException;
-import org.example.model.PhoneNumber;
-import org.example.repository.PhoneNumberRepository;
-import org.example.repository.impl.PhoneNumberRepositoryImpl;
-import org.example.service.PhoneNumberService;
-import org.example.servlet.dto.PhoneNumberIncomingDto;
-import org.example.servlet.dto.PhoneNumberOutGoingDto;
-import org.example.servlet.dto.PhoneNumberUpdateDto;
-import org.example.servlet.mapper.PhoneNumberDtoMapper;
-import org.example.servlet.mapper.impl.PhoneNumberDtoMapperImpl;
+
+import ru.pukhov.shop.exception.NotFoundException;
+import ru.pukhov.shop.model.PhoneNumber;
+import ru.pukhov.shop.repository.PhoneNumberRepository;
+import ru.pukhov.shop.repository.impl.PhoneNumberRepositoryImpl;
+import ru.pukhov.shop.service.PhoneNumberService;
+import ru.pukhov.shop.servlet.dto.PhoneNumberIncomingDto;
+import ru.pukhov.shop.servlet.dto.PhoneNumberOutGoingDto;
+import ru.pukhov.shop.servlet.dto.PhoneNumberUpdateDto;
+import ru.pukhov.shop.servlet.mapper.PhoneNumberDtoMapper;
+import ru.pukhov.shop.servlet.mapper.impl.PhoneNumberDtoMapperImpl;
 
 import java.util.List;
 

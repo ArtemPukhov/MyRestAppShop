@@ -1,11 +1,12 @@
-package org.example.servlet.mapper.impl;
+package ru.pukhov.shop.servlet.mapper.impl;
 
-import org.example.model.Department;
-import org.example.servlet.dto.DepartmentIncomingDto;
-import org.example.servlet.dto.DepartmentOutGoingDto;
-import org.example.servlet.dto.DepartmentUpdateDto;
-import org.example.servlet.dto.UserSmallOutGoingDto;
-import org.example.servlet.mapper.DepartmentDtoMapper;
+
+import ru.pukhov.shop.model.Department;
+import ru.pukhov.shop.servlet.dto.DepartmentIncomingDto;
+import ru.pukhov.shop.servlet.dto.DepartmentOutGoingDto;
+import ru.pukhov.shop.servlet.dto.DepartmentUpdateDto;
+import ru.pukhov.shop.servlet.dto.UserSmallOutGoingDto;
+import ru.pukhov.shop.servlet.mapper.DepartmentDtoMapper;
 
 import java.util.List;
 

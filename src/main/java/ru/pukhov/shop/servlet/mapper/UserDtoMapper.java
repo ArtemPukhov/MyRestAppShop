@@ -1,9 +1,10 @@
-package org.example.servlet.mapper;
+package ru.pukhov.shop.servlet.mapper;
 
-import org.example.model.User;
-import org.example.servlet.dto.UserIncomingDto;
-import org.example.servlet.dto.UserOutGoingDto;
-import org.example.servlet.dto.UserUpdateDto;
+
+import ru.pukhov.shop.model.User;
+import ru.pukhov.shop.servlet.dto.UserIncomingDto;
+import ru.pukhov.shop.servlet.dto.UserOutGoingDto;
+import ru.pukhov.shop.servlet.dto.UserUpdateDto;
 
 import java.util.List;
 

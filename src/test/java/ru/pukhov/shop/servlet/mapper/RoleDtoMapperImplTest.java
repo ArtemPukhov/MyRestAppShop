@@ -1,11 +1,12 @@
-package org.example.servlet.mapper.impl;
+package ru.pukhov.shop.servlet.mapper;
 
-import org.example.model.Role;
-import org.example.servlet.dto.RoleIncomingDto;
-import org.example.servlet.dto.RoleOutGoingDto;
-import org.example.servlet.dto.RoleUpdateDto;
-import org.example.servlet.mapper.RoleDtoMapper;
+
 import org.junit.jupiter.api.*;
+import ru.pukhov.shop.model.Role;
+import ru.pukhov.shop.servlet.dto.RoleIncomingDto;
+import ru.pukhov.shop.servlet.dto.RoleOutGoingDto;
+import ru.pukhov.shop.servlet.dto.RoleUpdateDto;
+import ru.pukhov.shop.servlet.mapper.impl.RoleDtoMapperImpl;
 
 import java.util.List;
 

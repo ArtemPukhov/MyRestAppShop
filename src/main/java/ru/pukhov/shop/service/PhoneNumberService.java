@@ -1,9 +1,10 @@
-package org.example.service;
+package ru.pukhov.shop.service;
 
-import org.example.exception.NotFoundException;
-import org.example.servlet.dto.PhoneNumberIncomingDto;
-import org.example.servlet.dto.PhoneNumberOutGoingDto;
-import org.example.servlet.dto.PhoneNumberUpdateDto;
+
+import ru.pukhov.shop.exception.NotFoundException;
+import ru.pukhov.shop.servlet.dto.PhoneNumberIncomingDto;
+import ru.pukhov.shop.servlet.dto.PhoneNumberOutGoingDto;
+import ru.pukhov.shop.servlet.dto.PhoneNumberUpdateDto;
 
 import java.util.List;
 

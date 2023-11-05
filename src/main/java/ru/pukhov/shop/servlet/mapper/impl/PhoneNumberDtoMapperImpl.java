@@ -1,12 +1,13 @@
-package org.example.servlet.mapper.impl;
+package ru.pukhov.shop.servlet.mapper.impl;
 
-import org.example.model.PhoneNumber;
-import org.example.model.User;
-import org.example.servlet.dto.PhoneNumberIncomingDto;
-import org.example.servlet.dto.PhoneNumberOutGoingDto;
-import org.example.servlet.dto.PhoneNumberUpdateDto;
-import org.example.servlet.dto.UserSmallOutGoingDto;
-import org.example.servlet.mapper.PhoneNumberDtoMapper;
+
+import ru.pukhov.shop.model.PhoneNumber;
+import ru.pukhov.shop.model.User;
+import ru.pukhov.shop.servlet.dto.PhoneNumberIncomingDto;
+import ru.pukhov.shop.servlet.dto.PhoneNumberOutGoingDto;
+import ru.pukhov.shop.servlet.dto.PhoneNumberUpdateDto;
+import ru.pukhov.shop.servlet.dto.UserSmallOutGoingDto;
+import ru.pukhov.shop.servlet.mapper.PhoneNumberDtoMapper;
 
 import java.util.List;
 

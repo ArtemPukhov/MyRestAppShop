@@ -1,6 +1,7 @@
-package org.example.repository;
+package ru.pukhov.shop.repository;
 
-import org.example.model.Department;
+
+import ru.pukhov.shop.model.Department;
 
 public interface DepartmentRepository extends Repository<Department, Long> {
 }

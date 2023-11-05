@@ -1,6 +1,6 @@
-package org.example.repository;
+package ru.pukhov.shop.repository;
 
-import org.example.model.PhoneNumber;
+import ru.pukhov.shop.model.PhoneNumber;
 
 import java.util.List;
 import java.util.Optional;

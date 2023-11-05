@@ -1,12 +1,8 @@
-package org.example.servlet;
+package ru.pukhov.shop.servlet;
+
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.exception.NotFoundException;
-import org.example.service.RoleService;
-import org.example.service.impl.RoleServiceImpl;
-import org.example.servlet.dto.RoleIncomingDto;
-import org.example.servlet.dto.RoleUpdateDto;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -14,6 +10,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import ru.pukhov.shop.exception.NotFoundException;
+import ru.pukhov.shop.service.RoleService;
+import ru.pukhov.shop.service.impl.RoleServiceImpl;
+import ru.pukhov.shop.servlet.dto.RoleIncomingDto;
+import ru.pukhov.shop.servlet.dto.RoleUpdateDto;
 
 import java.io.BufferedReader;
 import java.io.IOException;

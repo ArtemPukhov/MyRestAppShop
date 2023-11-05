@@ -1,17 +1,18 @@
-package org.example.service.impl;
+package ru.pukhov.shop.service;
 
-import org.example.exception.NotFoundException;
-import org.example.model.PhoneNumber;
-import org.example.model.Role;
-import org.example.repository.PhoneNumberRepository;
-import org.example.repository.impl.PhoneNumberRepositoryImpl;
-import org.example.service.PhoneNumberService;
-import org.example.servlet.dto.PhoneNumberIncomingDto;
-import org.example.servlet.dto.PhoneNumberOutGoingDto;
-import org.example.servlet.dto.PhoneNumberUpdateDto;
+
 import org.junit.jupiter.api.*;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
+import ru.pukhov.shop.exception.NotFoundException;
+import ru.pukhov.shop.model.PhoneNumber;
+import ru.pukhov.shop.model.Role;
+import ru.pukhov.shop.repository.PhoneNumberRepository;
+import ru.pukhov.shop.repository.impl.PhoneNumberRepositoryImpl;
+import ru.pukhov.shop.service.impl.PhoneNumberServiceImpl;
+import ru.pukhov.shop.servlet.dto.PhoneNumberIncomingDto;
+import ru.pukhov.shop.servlet.dto.PhoneNumberOutGoingDto;
+import ru.pukhov.shop.servlet.dto.PhoneNumberUpdateDto;
 
 import java.lang.reflect.Field;
 import java.util.Optional;

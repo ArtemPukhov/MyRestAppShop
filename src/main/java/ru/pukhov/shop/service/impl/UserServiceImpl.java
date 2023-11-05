@@ -1,15 +1,16 @@
-package org.example.service.impl;
+package ru.pukhov.shop.service.impl;
 
-import org.example.exception.NotFoundException;
-import org.example.model.User;
-import org.example.repository.UserRepository;
-import org.example.repository.impl.UserRepositoryImpl;
-import org.example.service.UserService;
-import org.example.servlet.dto.UserIncomingDto;
-import org.example.servlet.dto.UserOutGoingDto;
-import org.example.servlet.dto.UserUpdateDto;
-import org.example.servlet.mapper.UserDtoMapper;
-import org.example.servlet.mapper.impl.UserDtoMapperImpl;
+
+import ru.pukhov.shop.exception.NotFoundException;
+import ru.pukhov.shop.model.User;
+import ru.pukhov.shop.repository.UserRepository;
+import ru.pukhov.shop.repository.impl.UserRepositoryImpl;
+import ru.pukhov.shop.service.UserService;
+import ru.pukhov.shop.servlet.dto.UserIncomingDto;
+import ru.pukhov.shop.servlet.dto.UserOutGoingDto;
+import ru.pukhov.shop.servlet.dto.UserUpdateDto;
+import ru.pukhov.shop.servlet.mapper.UserDtoMapper;
+import ru.pukhov.shop.servlet.mapper.impl.UserDtoMapperImpl;
 
 import java.util.List;
 

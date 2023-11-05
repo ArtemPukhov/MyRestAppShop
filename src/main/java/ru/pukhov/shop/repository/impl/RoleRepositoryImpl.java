@@ -1,10 +1,10 @@
-package org.example.repository.impl;
+package ru.pukhov.shop.repository.impl;
 
-import org.example.db.ConnectionManager;
-import org.example.db.ConnectionManagerImpl;
-import org.example.exception.RepositoryException;
-import org.example.model.Role;
-import org.example.repository.RoleRepository;
+import ru.pukhov.shop.db.ConnectionManager;
+import ru.pukhov.shop.db.ConnectionManagerImpl;
+import ru.pukhov.shop.exception.RepositoryException;
+import ru.pukhov.shop.model.Role;
+import ru.pukhov.shop.repository.RoleRepository;
 
 import java.sql.*;
 import java.util.ArrayList;

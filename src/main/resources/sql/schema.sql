@@ -40,26 +40,26 @@ CREATE TABLE IF NOT EXISTS phone_numbers
 );
 
 INSERT INTO roles (role_name)
-VALUES ('Администратор'),        -- 1
-       ('Технический директор'), -- 2
-       ('Программист Java'),     -- 3
-       ('Программист React'),    -- 4
+VALUES ('Manager'),        -- 1
+       ('Administrator'), -- 2
+       ('salesman'),     -- 3
+       ('Director'),    -- 4
        ('HR'); -- 5
 
 INSERT INTO departments (department_name)
-VALUES ('Администрация'),       -- 1
-       ('BackEnd разработка'),  -- 2
-       ('Frontend разработка'), -- 3
-       ('HR менеджмент'); -- 4
+VALUES ('Office'),       -- 1
+       ('Regional office'),  -- 2
+       ('Shop'), -- 3
+       ('HR management'); -- 4
 
 INSERT INTO users (user_firstName, user_lastName, role_id)
-VALUES ('Иван', 'Субботин', 1),      -- 1
-       ('Петр', 'Понедельников', 2), -- 2
-       ('Игнат', 'Вторников', 3),    -- 3
-       ('Иван', 'Середец', 3),       -- 4
-       ('Максим', 'Четверкин', 3),   -- 5
-       ('Вера', 'Пятницкая', 4),     -- 6
-       ('Ольга', 'Воскресенская', 5); -- 7
+VALUES ('Petr', 'Petrov', 1),      -- 1
+       ('Ivan', 'Ivanov', 2), -- 2
+       ('Sergey', 'Sergeev', 3),    -- 3
+       ('Maria', 'Petrova', 3),       -- 4
+       ('Igor', 'Sidorov', 3),   -- 5
+       ('Artem', 'Artemov', 4),     -- 6
+       ('Olga', 'Olgova', 5); -- 7
 
 INSERT INTO users_departments (user_id, department_id)
 VALUES (1, 1), -- 1
@@ -72,13 +72,13 @@ VALUES (1, 1), -- 1
        (7, 4); -- 7
 
 INSERT INTO phone_numbers (phonenumber_number, user_id)
-VALUES ('+1(123)123 1111', 1), -- 1
-       ('+1(123)123 2222', 1), -- 2
-       ('+1(123)123 3333', 2), -- 3
-       ('+1(123)123 4444', 2), -- 4
-       ('+1(123)123 5555', 3), -- 5
-       ('+1(123)123 6666', 4), -- 6
-       ('+1(123)123 7777', 5), -- 7
-       ('+1(123)123 8888', 6), -- 8
-       ('+1(123)123 9995', 7); -- 9
+VALUES ('+1(234)567 8900', 1), -- 1
+       ('+1(234)567 8901', 1), -- 2
+       ('+1(234)567 8902', 2), -- 3
+       ('+1(234)567 8903', 2), -- 4
+       ('+1(234)567 8904', 3), -- 5
+       ('+1(234)567 8905', 4), -- 6
+       ('+1(234)567 8906', 5), -- 7
+       ('+1(234)567 8907', 6), -- 8
+       ('+1(234)567 8908', 7); -- 9
 

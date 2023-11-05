@@ -1,9 +1,10 @@
-package org.example.servlet.mapper;
+package ru.pukhov.shop.servlet.mapper;
 
-import org.example.model.Role;
-import org.example.servlet.dto.RoleIncomingDto;
-import org.example.servlet.dto.RoleOutGoingDto;
-import org.example.servlet.dto.RoleUpdateDto;
+
+import ru.pukhov.shop.model.Role;
+import ru.pukhov.shop.servlet.dto.RoleIncomingDto;
+import ru.pukhov.shop.servlet.dto.RoleOutGoingDto;
+import ru.pukhov.shop.servlet.dto.RoleUpdateDto;
 
 import java.util.List;
 

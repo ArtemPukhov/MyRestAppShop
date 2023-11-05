@@ -1,11 +1,5 @@
-package org.example.model;
+package ru.pukhov.shop.model;
 
-/**
- * The role of User
- * <p>
- * Relation:
- * Many to One: User -> Role
- */
 public class Role {
     private Long id;
     private String name;

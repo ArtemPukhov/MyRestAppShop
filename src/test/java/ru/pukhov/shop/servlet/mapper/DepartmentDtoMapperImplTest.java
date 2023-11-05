@@ -1,15 +1,16 @@
-package org.example.servlet.mapper.impl;
+package ru.pukhov.shop.servlet.mapper;
 
-import org.example.model.Department;
-import org.example.model.User;
-import org.example.servlet.dto.DepartmentIncomingDto;
-import org.example.servlet.dto.DepartmentOutGoingDto;
-import org.example.servlet.dto.DepartmentUpdateDto;
-import org.example.servlet.mapper.DepartmentDtoMapper;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ru.pukhov.shop.model.Department;
+import ru.pukhov.shop.model.User;
+import ru.pukhov.shop.servlet.dto.DepartmentIncomingDto;
+import ru.pukhov.shop.servlet.dto.DepartmentOutGoingDto;
+import ru.pukhov.shop.servlet.dto.DepartmentUpdateDto;
+import ru.pukhov.shop.servlet.mapper.impl.DepartmentDtoMapperImpl;
 
 import java.util.List;
 
